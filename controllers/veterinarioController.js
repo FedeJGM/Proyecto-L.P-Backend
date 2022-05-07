@@ -119,7 +119,7 @@ const comprobarToken = async (req, res) => {
   const tokenValido = await Veterinario.findOne({ token });
 
   if (tokenValido) {
-    // El TOken es válido el usuario existe
+    // El Token es válido el usuario existe
     res.json({ msg: "Token válido y el usuario existe" });
   } else {
     const error = new Error("Token no válido");
@@ -192,7 +192,6 @@ const actualizarPassword = async (req, res) => {
   // Comprobar su password
   if (await veterinario.comprobarPassword(pwd_actual)) {
     // Almacenar el nuevo password
-
     veterinario.password = pwd_nuevo;
     await veterinario.save();
     res.json({ msg: "Contraseña Almacenada Correctamente" });

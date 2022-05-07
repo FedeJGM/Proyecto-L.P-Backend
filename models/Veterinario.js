@@ -40,16 +40,20 @@ const veterinarioSchema = mongoose.Schema({
 
 // .pre antes de que se almacene la info de arriba
 veterinarioSchema.pre("save", async function (next) {
+  // Condicion que ignora si la contraseña ya se encuentra hasheada
   if (!this.isModified("password")) {
     next();
   }
+  // .genSalt = Rondas de hasheo
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
 });
 
+// Funcion que solo se registra en schema o modelo
 veterinarioSchema.methods.comprobarPassword = async function (
   passwordFormulario
 ) {
+  //bcrypt.compare me permite comparar hasheado con inicial password
   return await bcrypt.compare(passwordFormulario, this.password);
 };
 
