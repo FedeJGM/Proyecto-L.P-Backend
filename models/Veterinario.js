@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import generarId from "../helpers/generarId.js";
 
+//Estructura del modelo de veterinario
 const veterinarioSchema = mongoose.Schema({
   nombre: {
     type: String,
@@ -37,6 +38,7 @@ const veterinarioSchema = mongoose.Schema({
   },
 });
 
+// .pre antes de que se almacene la info de arriba
 veterinarioSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
     next();
@@ -51,5 +53,6 @@ veterinarioSchema.methods.comprobarPassword = async function (
   return await bcrypt.compare(passwordFormulario, this.password);
 };
 
+//Con esta variable queda registrado en DataBase
 const Veterinario = mongoose.model("Veterinario", veterinarioSchema);
 export default Veterinario;

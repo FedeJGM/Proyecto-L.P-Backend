@@ -17,14 +17,14 @@ const emailOlvidePassword = async (datos) => {
   const info = await transporter.sendMail({
     from: "APV - Administrador de Pacientes de Veterinaria",
     to: email,
-    subject: "Reestablece tu Password",
-    text: "Reestablece tu Password",
-    html: `<p>Hola: ${nombre}, has solicitado reestablecer tu password.</p>
+    subject: "Reestablece tu Contraseña",
+    text: "Reestablece tu Contraseña",
+    html: `<p>Hola: ${nombre}, has solicitado reestablecer tu contraseña.</p>
 
-        <p>Sigue el siguiente enlace para generar un nuevo password:
+        <p>Sigue el siguiente enlace para generar una nueva contraseña:
         <a href="${process.env.FRONTEND_URL}/olvide-password/${token}">Reestablecer Password</a> </p>
 
-        <p>Si tu no creaste esta cuenta, puedes ignorar este mensaje</p>
+        <p>Si tu no creaste esta cuenta, le recomendamos ignorar este mensaje</p>
     `,
   });
 

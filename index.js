@@ -5,7 +5,10 @@ import conectarDB from "./config/db.js";
 import veterinarioRoutes from "./routes/veterinarioRoutes.js";
 import pacienteRoutes from "./routes/pacienteRoutes.js";
 
+//En esta variable (app) contiene toda la funcionalidad para crear el server
 const app = express();
+
+//Forma en que express maneja el routing
 app.use(express.json());
 
 dotenv.config();
@@ -32,6 +35,7 @@ app.use("/api/pacientes", pacienteRoutes);
 
 const PORT = process.env.PORT || 4000;
 
+//Con esta arrancaría el server
 app.listen(PORT, () => {
   console.log(`Servidor funcionando en el puerto ${PORT}`);
 });
