@@ -82,7 +82,7 @@ const autenticar = async (req, res) => {
       token: generarJWT(usuario.id),
     });
   } else {
-    const error = new Error("El Password es incorrecto");
+    const error = new Error("La Contraseña es incorrecta");
     return res.status(403).json({ msg: error.message });
   }
 };
@@ -107,7 +107,7 @@ const olvidePassword = async (req, res) => {
       token: existeVeterinario.token,
     });
 
-    res.json({ msg: "Hemos enviado un email con las instrucciones" });
+    res.json({ msg: "Hemos enviado un correo con las instrucciones" });
   } catch (error) {
     console.log(error);
   }
@@ -141,7 +141,7 @@ const nuevoPassword = async (req, res) => {
     veterinario.token = null;
     veterinario.password = password;
     await veterinario.save();
-    res.json({ msg: "Password modificado correctamente" });
+    res.json({ msg: "Contraseña modificada correctamente" });
   } catch (error) {
     console.log(error);
   }
@@ -159,7 +159,7 @@ const actualizarPerfil = async (req, res) => {
     const existeEmail = await Veterinario.findOne({ email });
 
     if (existeEmail) {
-      const error = new Error("Ese email ya esta en uso");
+      const error = new Error("Ese correo ya está en uso");
       return res.status(400).json({ msg: error.message });
     }
   }
@@ -195,9 +195,9 @@ const actualizarPassword = async (req, res) => {
 
     veterinario.password = pwd_nuevo;
     await veterinario.save();
-    res.json({ msg: "Password Almacenado Correctamente" });
+    res.json({ msg: "Contraseña Almacenada Correctamente" });
   } else {
-    const error = new Error("El Password Actual es Incorrecto");
+    const error = new Error("La Contraseña Actual es Incorrecta");
     return res.status(400).json({ msg: error.message });
   }
 };
