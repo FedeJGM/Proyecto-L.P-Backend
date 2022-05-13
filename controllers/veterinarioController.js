@@ -33,6 +33,7 @@ const registrar = async (req, res) => {
 };
 
 const perfil = (req, res) => {
+  // una especie de sección del servidor se almacena la info, como id, nombre, email etc
   const { veterinario } = req;
   res.json(veterinario);
 };
@@ -128,16 +129,19 @@ const comprobarToken = async (req, res) => {
 };
 
 const nuevoPassword = async (req, res) => {
+  // req.params es la url | req.body es lo que el usuario escriba en los diferentes formularios
   const { token } = req.params;
   const { password } = req.body;
 
   const veterinario = await Veterinario.findOne({ token });
+  // Si no existe este veterinario
   if (!veterinario) {
     const error = new Error("Hubo un error");
     return res.status(400).json({ msg: error.message });
   }
-
+  // en caso de que si exista el token y sea valido
   try {
+    // eliminar el token para que sea de solo un uso
     veterinario.token = null;
     veterinario.password = password;
     await veterinario.save();

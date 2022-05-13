@@ -18,6 +18,7 @@ router.post("/", registrar);
 router.get("/confirmar/:token", confirmar);
 router.post("/login", autenticar);
 router.post("/olvide-password", olvidePassword);
+// .route para simplificar un poco en express y hacer un chain
 router.route("/olvide-password/:token").get(comprobarToken).post(nuevoPassword);
 
 // área privada
