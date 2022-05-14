@@ -9,11 +9,13 @@ import {
 } from "../controllers/pacienteController.js";
 import checkAuth from "../middleware/authMiddleware.js";
 
+// "/" = ruta de /api/pacientes
 router
   .route("/")
   .post(checkAuth, agregarPaciente)
   .get(checkAuth, obtenerPacientes);
 
+// /:id corresponde al id del paciente
 router
   .route("/:id")
   .get(checkAuth, obtenerPaciente)

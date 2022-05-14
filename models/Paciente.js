@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+// Line 28 - 29 hace referencia que almacena el Id del Veterinario
 const pacientesSchema = mongoose.Schema(
   {
     nombre: {
@@ -29,10 +30,12 @@ const pacientesSchema = mongoose.Schema(
     },
   },
   {
+    // esta linea nos crea las columnas de editado y creado
     timestamps: true,
   }
 );
 
+// Guarda la referencia del modelo y la forma de la info que lleva ellos con pacientesSchema
 const Paciente = mongoose.model("Paciente", pacientesSchema);
 
 export default Paciente;

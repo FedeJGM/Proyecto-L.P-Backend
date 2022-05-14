@@ -30,6 +30,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
+// Con esta se registra el routing de los modelos
 app.use("/api/veterinarios", veterinarioRoutes);
 app.use("/api/pacientes", pacienteRoutes);
 
