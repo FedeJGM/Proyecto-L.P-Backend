@@ -19,7 +19,7 @@ const registrar = async (req, res) => {
     const veterinario = new Veterinario(req.body);
     const veterinarioGuardado = await veterinario.save();
 
-    // Enviar el email
+    // Enviar el email - se manda a llamar la función de email registro del archivo creado
     emailRegistro({
       email,
       nombre,

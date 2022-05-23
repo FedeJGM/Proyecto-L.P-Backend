@@ -12,7 +12,7 @@ const emailRegistro = async (datos) => {
 
   const { email, nombre, token } = datos;
 
-  //Enviar el email
+  //Enviar el email - se utiliza transporter ya que tiene una config necesaria | dentro de sendmail se guarda la data
 
   const info = await transporter.sendMail({
     from: "APV - Administrador de Pacientes de Veterinaria",
@@ -26,7 +26,7 @@ const emailRegistro = async (datos) => {
         <p>Si tu no creaste esta cuenta, le recomendamos ignorar este mensaje</p>
     `,
   });
-
+  // comprobar en la console el envío
   console.log("Mensaje enviado: %s", info.messageId);
 };
 
